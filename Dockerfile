@@ -24,14 +24,16 @@ ENV JULIA_DEPOT_PATH=/opt/julia \
 
 # Setup Julia
 COPY setup-julia.bash /opt/setup-scripts/setup-julia.bash
+COPY setup-julia-packages.bash /opt/setup-scripts/setup-julia-packages.bash
 RUN chmod +x /opt/setup-scripts/setup-julia.bash && /opt/setup-scripts/setup-julia.bash
+RUN chmod +x /opt/setup-scripts/setup-julia-packages.bash
 
 RUN chmod 777 /opt/julia -R
 RUN chmod 777 /opt/julia-1.9.3 -R
 
 # 3) install packages using notebook user
 USER jovyan
-
+RUN /opt/setup-scripts/setup-julia-packages.bash
 # RUN conda install -y scikit-learn
 
 RUN pip install --no-cache-dir networkx scipy
