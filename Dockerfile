@@ -28,7 +28,7 @@ COPY setup-julia-packages.bash /opt/setup-scripts/setup-julia-packages.bash
 RUN chmod +x /opt/setup-scripts/setup-julia.bash && /opt/setup-scripts/setup-julia.bash
 RUN chmod +x /opt/setup-scripts/setup-julia-packages.bash
 
-RUN chmod 777 /opt/julia -R && chmod 777 /opt/julia-1.9.3 -R
+RUN chmod 777 /opt/julia -R && chmod 777 /opt/julia-1.9.3 -R && chmod 777 /opt/julia/logs
 RUN chmod g+s /opt/julia && chmod g+s /opt/julia-1.9.3
 
 # 3) install packages using notebook user
