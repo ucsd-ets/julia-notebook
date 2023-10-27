@@ -16,8 +16,7 @@ USER root
 RUN apt-get -y install htop
 
 # uninstall old julia
-RUN rm -rf /opt/julia* && unset JULIA_PKGDIR && unset JULIA_VERSION && unset JULIA_DEPOT_PATH && rm /usr/local/bin/julia && rm -rf /etc/julia
-
+ENV JULIA_VERSION=1.9.3
 ENV JULIA_DEPOT_PATH=/opt/julia \
     JULIA_PKGDIR=/opt/julia
 
