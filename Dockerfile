@@ -15,10 +15,15 @@ USER root
 
 RUN apt-get -y install htop
 
+# uninstall old julia
 RUN rm -rf /opt/julia* && unset JULIA_PKGDIR && unset JULIA_VERSION && unset JULIA_DEPOT_PATH && rm /usr/local/bin/julia
-RUN curl -fsSL https://install.julialang.org | sh -s -- -y
 
-RUN juliaup status
+ENV JULIA_DEPOT_PATH=/opt/julia \
+    JULIA_PKGDIR=/opt/julia
+
+# Setup Julia
+COPY setup-julia.bash /opt/setup-scripts/setup-julia.bash
+RUN /opt/setup-scripts/setup-julia.bash
 
 # 3) install packages using notebook user
 USER jovyan
