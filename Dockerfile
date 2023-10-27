@@ -26,6 +26,9 @@ ENV JULIA_DEPOT_PATH=/opt/julia \
 COPY setup-julia.bash /opt/setup-scripts/setup-julia.bash
 RUN chmod +x /opt/setup-scripts/setup-julia.bash && /opt/setup-scripts/setup-julia.bash
 
+RUN chmod 777 /opt/julia -R
+RUN chmod 777 /opt/julia-1.9.3 -R
+
 # 3) install packages using notebook user
 USER jovyan
 
