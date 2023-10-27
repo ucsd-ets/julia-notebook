@@ -15,6 +15,7 @@ USER root
 
 RUN apt-get -y install htop
 
+RUN rm -rf /opt/julia* && unset JULIA_PKGDIR && unset JULIA_VERSION && unset JULIA_DEPOT_PATH && rm /usr/local/bin/julia
 RUN curl -fsSL https://install.julialang.org | sh -s -- -y
 
 RUN juliaup status
