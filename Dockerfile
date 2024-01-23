@@ -33,10 +33,17 @@ RUN chmod g+s /opt/julia && chmod g+s /opt/julia-1.9.3
 
 # 3) install packages using notebook user
 USER jovyan
+
+ENV JULIA_DEPOT_PATH=/opt/julia JULIA_PKGDIR=/opt/julia
+RUN chmod 1777 /opt/julia/logs
+
 RUN /opt/setup-scripts/setup-julia-packages.bash
 # RUN conda install -y scikit-learn
 
 RUN pip install --no-cache-dir networkx scipy
+
+RUN chmod -R o+w /opt/julia
+ENV JULIA_DEPOT_PATH=~/.julia:/opt/julia
 
 # Override command to disable running jupyter notebook at launch
 # CMD ["/bin/bash"]
