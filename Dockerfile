@@ -35,11 +35,11 @@ RUN chmod g+s /opt/julia && chmod g+s /opt/julia-1.9.3
 USER jovyan
 
 ENV JULIA_DEPOT_PATH=/opt/julia JULIA_PKGDIR=/opt/julia
+RUN mkdir /opt/julia/logs
+RUN chmod 1777 /opt/julia/logs
 
 RUN /opt/setup-scripts/setup-julia-packages.bash
 # RUN conda install -y scikit-learn
-
-RUN chmod 1777 /opt/julia/logs
 
 RUN pip install --no-cache-dir networkx scipy
 
